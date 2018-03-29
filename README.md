@@ -1,2 +1,3 @@
 # django-blog
 test
+new
