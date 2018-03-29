@@ -2,3 +2,4 @@
 test
 new
 linux
+test pull
