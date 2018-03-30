@@ -44,13 +44,15 @@ class ArchivesView(ListView):
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
     def get_queryset(self):
-        archives = get_object_or_404(Post, pk=self.kwargs.get('year', 'month'))
-        return super(ArchivesView, self).get_queryset().filter(created_time__year= archives.year, created_time__month= archives.month)
+        year = self.kwargs.get('year')
+        month = self.kwargs.get('month')
+        return super(ArchivesView, self).get_queryset().filter(created_time__year=year,
+                                                                created_time__month=month)
 
-# def archives(request, year, month):
-#     post_list = Post.objects.filter(created_time__year=year,
-#                                 created_time__month=month).order_by('-created_time')
-#     return render(request, 'blog/index.html', context={'post_list': post_list})
+def archives(request, year, month):
+    post_list = Post.objects.filter(created_time__year=year,
+                                created_time__month=month).order_by('-created_time')
+    return render(request, 'blog/index.html', context={'post_list': post_list})
 
 class CategoryView(ListView):
     model = Post
