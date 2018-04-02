@@ -118,37 +118,16 @@
 
                 <div class="widget widget-tag-cloud">
                     <h3 class="widget-title">标签云</h3>
+                    {% get_tags as tag_list %}
                     <ul>
+                        {% for tag in tag_list %}
                         <li>
-                            <a href="#">Django</a>
+                            <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
                         </li>
-                        <li>
-                            <a href="#">Python</a>
-                        </li>
-                        <li>
-                            <a href="#">Java</a>
-                        </li>
-                        <li>
-                            <a href="#">笔记</a>
-                        </li>
-                        <li>
-                            <a href="#">文档</a>
-                        </li>
-                        <li>
-                            <a href="#">AngularJS</a>
-                        </li>
-                        <li>
-                            <a href="#">CSS</a>
-                        </li>
-                        <li>
-                            <a href="#">JavaScript</a>
-                        </li>
-                        <li>
-                            <a href="#">Snippet</a>
-                        </li>
-                        <li>
-                            <a href="#">jQuery</a>
-                        </li>
+                        {% empty %}
+                        暂无标签！ 
+                        {% endfor %}
+
                     </ul>
                 </div>
                 <div class="rss">
@@ -162,7 +141,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p class="copyright">&copy 2017 - 采集自<a href="http://www.cssmoban.com/"
+                <p class="copyright">&copy 2018 - 采集自<a href="http://www.cssmoban.com/"
                                                         target="_blank" title="模板之家">模板之家</a>
                     - 由<a href="http://zmrenwu.com/" title="网页模板" target="_blank">追梦人物的博客</a>修改
                 </p>
