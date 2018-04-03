@@ -6,6 +6,9 @@ from django.views.generic import ListView
 from django.db.models import Q
 
 
+def about(request):
+    return render(request, 'blog/about.html')
+
 class IndexView(ListView):
     model = Post
     template_name = 'blog/index.html'
@@ -143,6 +146,12 @@ class IndexView(ListView):
 
         return data
 
+
+def full_width(request):
+    post_list = Post.objects.all().order_by('-created_time')
+    return render(request, 'blog/full-width.html', context={
+                                'post_list':post_list
+                            })
 
 # def index(request):
 #     post_list = Post.objects.all().order_by('-created_time')
